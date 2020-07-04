@@ -14,4 +14,25 @@ class PertanyaanModel {
         return $new_pertanyaan;
     }
 
+    public static function find_by_id($id){
+        $pertanyaan = DB::table('pertanyaan')->where('id', $id)->first();
+        return $pertanyaan;
+    }
+
+    public static function update($id, $request){
+        $pertanyaan = DB::table('pertanyaan')
+                        ->where('id', $id)
+                        ->update([
+                            'judul' => $request["judul"],
+                            'isi' => $request["isi"],
+                        ]);
+        return $pertanyaan;
+    }
+
+    public static function destroy($id){
+        $delete = DB::table('pertanyaan')
+                        ->where('id', $id)
+                        ->delete();
+        return $delete;
+    }
 }
